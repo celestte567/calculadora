@@ -60,33 +60,42 @@ public class calculadora {
    public static void main(String[] args){
        Scanner sc = new Scanner(System.in);
 
-       int opcion = mostraMenus(sc);
+       String continuar;
 
-       int numero1 = LeerNumero(sc, "ingresar el primer numero");
-       int numero2 = LeerNumero(sc, "ingresar el segundo numero");
+       do {
 
-       switch (opcion){
-           case 1:
-               System.out.println(" la suma es:" + sumar(numero1, numero2));
-               break;
-           case 2:
-               System.out.println("la resta es :" + restar(numero1, numero2));
-               break;
-           case 3:
-               System.out.println("la multiplicacion es:" + multiplicar(numero1, numero2));
-               break;
-           case 4:
-               if(numero2 != 0){
-                   System.out.println("la divicion es" + dividir(numero1, numero2));
-               } else{
-                   System.out.println("no se puede dividier entre 0");
-               }
-               break;
+           int opcion = mostraMenus(sc);
 
-           default:
-               System.out.println("opcion invilida");
-       }
-       sc.close();
+           int numero1 = LeerNumero(sc, "ingresar el primer numero");
+           int numero2 = LeerNumero(sc, "ingresar el segundo numero");
+
+           switch (opcion) {
+               case 1:
+                   System.out.println(" la suma es:" + sumar(numero1, numero2));
+                   break;
+               case 2:
+                   System.out.println("la resta es :" + restar(numero1, numero2));
+                   break;
+               case 3:
+                   System.out.println("la multiplicacion es:" + multiplicar(numero1, numero2));
+                   break;
+               case 4:
+                   if (numero2 != 0) {
+                       System.out.println("la divicion es" + dividir(numero1, numero2));
+                   } else {
+                       System.out.println("no se puede dividier entre 0");
+                   }
+                   break;
+
+               default:
+                   System.out.println("opcion invilida");
+           }
+           sc.close();
+
+           System.out.println("continuar s/n");
+           continuar =sc.nextLine();
+
+       }while (continuar.equals("s"));
    }
 
 }
