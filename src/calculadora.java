@@ -24,5 +24,12 @@ public class calculadora {
        return (double) a / b;
    }
 
+   public enum Operaciones{
+       SUMA,
+       RESTA,
+       MULTIPLICACION,
+       DIVISIO
+   }
+
 }
 
