@@ -31,5 +31,63 @@ public class calculadora {
        DIVISIO
    }
 
+   public static int mostraMenus(Scanner sc){
+       System.out.println("1.sumar");
+       System.out.println("2.restar");
+       System.out.println("3.multiplicacion");
+       System.out.println("4.dividir");
+       System.out.println("selecione una opcion");
+
+       return Integer.parseInt(sc.nextLine());
+   }
+
+   public static int LeerNumero(Scanner sc, String mensaje){
+       int numero = 0;
+       boolean numeroValido = false;
+
+       do {
+           System.out.println(mensaje);
+           try {
+               numero = Integer.parseInt(sc.nextLine());
+               numeroValido = true;
+           }catch (NumberFormatException e) {
+               System.out.println("ingreso un numero incorrecto. vuelva a ingresar un numero valido ");
+           }
+       } while (!numeroValido);
+       return numero;
+   }
+
+   public static void main(String[] args){
+       Scanner sc = new Scanner(System.in);
+
+       int opcion = mostraMenus(sc);
+
+       int numero1 = LeerNumero(sc, "ingresar el primer numero");
+       int numero2 = LeerNumero(sc, "ingresar el segundo numero");
+
+       switch (opcion){
+           case 1:
+               System.out.println(" la suma es:" + sumar(numero1, numero2));
+               break;
+           case 2:
+               System.out.println("la resta es :" + restar(numero1, numero2));
+               break;
+           case 3:
+               System.out.println("la multiplicacion es:" + multiplicar(numero1, numero2));
+               break;
+           case 4:
+               if(numero2 != 0){
+                   System.out.println("la divicion es" + dividir(numero1, numero2));
+               } else{
+                   System.out.println("no se puede dividier entre 0");
+               }
+               break;
+
+           default:
+               System.out.println("opcion invilida");
+       }
+       sc.close();
+   }
+
 }
 
