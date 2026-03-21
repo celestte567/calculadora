@@ -11,6 +11,7 @@ public class calculadora {
        return a + b;
    }
 
+
    public static int multiplicar(int a, int b){
        return a * b;
    }
@@ -36,6 +37,7 @@ public class calculadora {
        System.out.println("2.restar");
        System.out.println("3.multiplicacion");
        System.out.println("4.dividir");
+       System.out.println("5.salir");
        System.out.println("selecione una opcion");
 
        return Integer.parseInt(sc.nextLine());
@@ -57,14 +59,23 @@ public class calculadora {
        return numero;
    }
 
+
+
    public static void main(String[] args){
        Scanner sc = new Scanner(System.in);
 
-       String continuar;
+       String continuar = "s";
+       boolean salir = false;
+
 
        do {
-
            int opcion = mostraMenus(sc);
+
+           if (opcion == 5) {
+               System.out.println("saliendo del prgrama");
+               salir = true;
+               continue;
+           }
 
            int numero1 = LeerNumero(sc, "ingresar el primer numero");
            int numero2 = LeerNumero(sc, "ingresar el segundo numero");
@@ -90,12 +101,16 @@ public class calculadora {
                default:
                    System.out.println("opcion invilida");
            }
-           sc.close();
+           System.out.println("Desea continuar (s/n)");
+           continuar = sc.nextLine(). toLowerCase();
 
-           System.out.println("continuar s/n");
-           continuar =sc.nextLine();
+           if (!continuar.equals("s")) {
+               salir = true;
+           }
 
-       }while (continuar.equals("s"));
+       }while (!salir);
+
+       sc.close();
    }
 
 }
