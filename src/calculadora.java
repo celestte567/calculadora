@@ -77,6 +77,14 @@ public class calculadora {
                continue;
            }
 
+           do {
+               opcion = mostraMenus(sc);
+
+               if (opcion < 1 || opcion > 5){
+                   System.out.println("no es una opcion valida, eliga una opcion valida");
+               }
+           } while (opcion < 1 || opcion > 5);
+
            int numero1 = LeerNumero(sc, "ingresar el primer numero");
            int numero2 = LeerNumero(sc, "ingresar el segundo numero");
 
@@ -104,11 +112,15 @@ public class calculadora {
            System.out.println("Desea continuar (s/n)");
            continuar = sc.nextLine(). toLowerCase();
 
-           if (!continuar.equals("s")) {
-               salir = true;
+           if (!continuar.equals("s") && !continuar.equals("n")) {
+               System.out.println("opcion invalida, eliga entre 's' o 'n' ");
            }
 
-       }while (!salir);
+       }while (!continuar.equals("s") && !continuar.equals("n"));
+
+       if (continuar.equals("n")) {
+           salir = true;
+       }
 
        sc.close();
    }
