@@ -20,6 +20,10 @@ public class Calculadora {
         return (double) a / b;
     }
 
+    public static double calcularDescuento(int monto, int descuento){
+        return monto - (monto * descuento /100);
+    }
+
     public static Object leerValor(Scanner sc, Class<?> type) {
         String input = sc.nextLine().trim();
         try {
@@ -70,6 +74,7 @@ public class Calculadora {
         System.out.println("2. Restar");
         System.out.println("3. Multiplicar");
         System.out.println("4. Dividir");
+        System.out.println("5. Descuento ");
         System.out.println("---------------------------");
         System.out.println("Seleccione una opción: ");
     }
@@ -92,24 +97,47 @@ public class Calculadora {
                     break;
                 }
 
-                if (opcion < 1 || opcion > 4) {
-                    System.out.println("Opción inválida, elija entre 0 y 4.");
+                if (opcion < 1 || opcion > 5) {
+                    System.out.println("Opción inválida, elija entre 0 y 5.");
                     continue; // Volver al menú sin pedir números
                 }
 
-                int numero1 = leerNumero(sc, "Ingrese el primer número: ");
-                int numero2 = leerNumero(sc, "Ingrese el segundo número: ");
 
                 switch (opcion) {
-                    case 1 -> System.out.println("Resultado: " + sumar(numero1, numero2));
-                    case 2 -> System.out.println("Resultado: " + restar(numero1, numero2));
-                    case 3 -> System.out.println("Resultado: " + multiplicar(numero1, numero2));
+                    case 1 ->{
+                        int numero1 = leerNumero(sc,"ingrese el primer numero: ");
+                        int numero2 = leerNumero(sc,"ingrese el segundo numeor: ");
+                        System.out.println("Resultado: " + sumar(numero1, numero2));
+
+                    }
+                    case 2 -> {
+                        int numero1 = leerNumero(sc,"ingrese el primer numero: ");
+                        int numero2 = leerNumero(sc,"ingrese el segundo numeor: ");
+                        System.out.println("Resultado: " + restar(numero1, numero2));
+                    }
+                    case 3 -> {
+                        int numero1 = leerNumero(sc,"ingrese el primer numero: ");
+                        int numero2 = leerNumero(sc,"ingrese el segundo numeor: ");
+                        System.out.println("Resultado: " + multiplicar(numero1, numero2));
+                    }
                     case 4 -> {
+                        int numero1 = leerNumero(sc,"ingrese el primer numero: ");
+                        int numero2 = leerNumero(sc,"ingrese el segundo numeor: ");
                         try {
                             System.out.println("Resultado: " + dividir(numero1, numero2));
                         } catch (ArithmeticException e) {
                             System.out.println("Error: " + e.getMessage());
                         }
+                    }
+                    case 5 -> {
+                        int monto = leerNumero(sc, "ingrese el monto: ");
+                        int descuento = leerNumero(sc, "ingrese  el procentaje de descuento: ");
+
+                        double resultado = calcularDescuento(monto, descuento);
+
+                        System.out.println("precio original: " + monto);
+                        System.out.println("Descuento: " + descuento + "%");
+                        System.out.println("precio final: " + resultado);
                     }
                 }
 
